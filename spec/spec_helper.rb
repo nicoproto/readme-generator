@@ -16,7 +16,11 @@
 
 # Config for SimpleCov
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter "/channels/"
+	add_filter "/mailers/"
+	add_filter "/jobs/"
+end
 # --------------------
 
 RSpec.configure do |config|
