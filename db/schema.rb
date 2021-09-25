@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_131500) do
+ActiveRecord::Schema.define(version: 2021_09_25_132846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "readme_tools", force: :cascade do |t|
+    t.bigint "readme_id", null: false
+    t.bigint "tool_id", null: false
+    t.text "comments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["readme_id"], name: "index_readme_tools_on_readme_id"
+    t.index ["tool_id"], name: "index_readme_tools_on_tool_id"
+  end
 
   create_table "readmes", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -48,5 +58,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_131500) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "readme_tools", "readmes"
+  add_foreign_key "readme_tools", "tools"
   add_foreign_key "readmes", "users"
 end
