@@ -1,0 +1,8 @@
+<%= simple_form_for @readme do |f|  %>
+  <%= f.rich_text_area :project_description %>
+  <%= f.input :staging_url %>
+  <%= f.input :production_url %>
+  <%= f.input :repository_url %>
+  <%= f.input :keys_required %>
+  <%= f.button :submit %>
+<% end %>
