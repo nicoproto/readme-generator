@@ -4,7 +4,7 @@ RSpec.describe RubygemsInfoService, type: :model do
   describe '#call' do
     context 'with valid gem name' do
       it 'should return gem information' do
-        gem_data = RubygemsInfoService.call('cucumber')
+        gem_data = RubygemsInfoService.call('cucumber').first
 
         expect(gem_data[:name]).to eq('cucumber')
       end

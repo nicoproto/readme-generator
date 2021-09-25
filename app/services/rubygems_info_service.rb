@@ -18,7 +18,6 @@ class RubygemsInfoService < ApplicationService
 
     return false if data.length == 0
 
-
     data.map do |gem|
       {
         name: gem["name"],
