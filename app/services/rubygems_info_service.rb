@@ -18,12 +18,15 @@ class RubygemsInfoService < ApplicationService
 
     return false if data.length == 0
 
-    return {
-      name: data.first["name"],
-      webesite: data.first["homepage_uri"],
-      version: data.first["version"],
-      repository_url: data.first["source_code_uri"],
-      description: data.first["info"]
-    }
+
+    data.map do |gem|
+      {
+        name: gem["name"],
+        webesite: gem["homepage_uri"],
+        version: gem["version"],
+        repository_url: gem["source_code_uri"],
+        description: gem["info"]
+      }
+    end
   end
 end

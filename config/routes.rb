@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :readmes, only: [:new, :create]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :gems, param: :query, only: [ :show, :index ]
+    end
+  end
 end
