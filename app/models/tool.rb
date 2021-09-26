@@ -1,5 +1,5 @@
 class Tool < ApplicationRecord
-  has_many :readme_tools
+  has_many :readme_tools, dependent: :destroy
   has_many :readmes, through: :readme_tools
 
   validates_presence_of :name # TODO: Add category
