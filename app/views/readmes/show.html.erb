@@ -1,0 +1,16 @@
+<h3>Project information</h3>
+<%= @readme.project_description %>
+
+<p><strong>Staging URL: </strong><%= @readme.staging_url %></p>
+<p><strong>Production URL: </strong><%= @readme.production_url %></p>
+<p><strong>Repository URL: </strong><%= @readme.repository_url %></p>
+<p><strong>Are keys required? </strong><%= @readme.keys_required %></p>
+
+<h3>Tools used</h3>
+<ul>
+  <% @readme.tools.each do |tool| %>
+    <li>
+      <strong><%= link_to tool.name, tool.website_url, target: "_blank" %></strong> - <%= tool.description %>
+    </li>
+  <% end %>
+</ul>

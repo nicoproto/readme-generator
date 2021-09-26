@@ -8,4 +8,8 @@ class ReadmePolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def show?
+    record.user == user
+  end
 end

@@ -1,4 +1,9 @@
 class ReadmesController < ApplicationController
+  def show
+    @readme = Readme.find(params[:id])
+    authorize @readme
+  end
+
   def new
     @readme = Readme.new
     @readme.readme_tools.build
@@ -11,12 +16,7 @@ class ReadmesController < ApplicationController
     authorize @readme
 
     if @readme.save
-      params[:readme][:tools_names].each do |gem_name|
-        next if gem_name.empty?
-        tool = Tool.find_or_create_by(name: gem_name)
-        ReadmeTool.create( readme: @readme, tool: tool)
-      end
-
+      create_readme_tools
       redirect_to @readme
     else
       render :new
@@ -27,6 +27,14 @@ class ReadmesController < ApplicationController
   private
 
   def readme_params
-    params.require(:readme).permit(:staging_url, :production_url, :repository_url, :keys_required)
+    params.require(:readme).permit(:staging_url, :production_url, :repository_url, :keys_required, :project_description)
+  end
+
+  def create_readme_tools
+    params[:readme][:tools_names].each do |gem_name|
+      next if gem_name.empty?
+      tool = Tool.find_or_create_by(name: gem_name)
+      ReadmeTool.create( readme: @readme, tool: tool)
+    end
   end
 end
