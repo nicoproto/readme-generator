@@ -1,5 +1,6 @@
 class Readme < ApplicationRecord
-  attr_accessor :tools_names
+  attr_accessor :gem_names
+  attr_accessor :package_names
 
   belongs_to :user
   has_many :readme_tools, dependent: :destroy

@@ -1,16 +1,26 @@
 <h3>Project information</h3>
 <%= @readme.project_description %>
 
-<p><strong>Staging URL: </strong><%= @readme.staging_url %></p>
-<p><strong>Production URL: </strong><%= @readme.production_url %></p>
-<p><strong>Repository URL: </strong><%= @readme.repository_url %></p>
-<p><strong>Are keys required? </strong><%= @readme.keys_required %></p>
+<p><strong>Staging URL: </strong><%= link_to @readme.staging_url %></p>
+<p><strong>Production URL: </strong><%= link_to @readme.production_url %></p>
+<p><strong>Repository URL: </strong><%= link_to @readme.repository_url %></p>
+<p><strong>Are keys required? </strong><%= link_to @readme.keys_required %></p>
 
-<h3>Tools used</h3>
+<h3>External Services</h3>
+<h4>Gems</h4>
 <ul>
-  <% @readme.tools.each do |tool| %>
+  <% @gems.each do |gem| %>
     <li>
-      <strong><%= link_to tool.name, tool.website_url, target: "_blank" %></strong> - <%= tool.description %>
+      <strong><%= link_to gem.name, gem.website_url, target: "_blank" %></strong> - <%= gem.description %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Packages</h4>
+<ul>
+  <% @packages.each do |package| %>
+    <li>
+      <strong><%= link_to package.name, package.website_url, target: "_blank" %></strong> - <%= package.description %>
     </li>
   <% end %>
 </ul>

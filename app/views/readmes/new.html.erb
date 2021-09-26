@@ -1,10 +1,11 @@
 <%= simple_form_for @readme do |f|  %>
   <%= f.rich_text_area :project_description %>
-  <%= f.input :staging_url %>
-  <%= f.input :production_url %>
-  <%= f.input :repository_url %>
+  <%= f.input :staging_url, as: :string %>
+  <%= f.input :production_url, as: :string %>
+  <%= f.input :repository_url, as: :string %>
   <%= f.input :keys_required %>
-  <%= f.input :tools_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }', multiple: true} %>
+  <%= f.input :gem_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }', multiple: true} %>
+  <%= f.input :package_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }', multiple: true} %>
 
   <%= f.button :submit %>
 <% end %>

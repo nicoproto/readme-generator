@@ -2,6 +2,10 @@ class ReadmesController < ApplicationController
   def show
     @readme = Readme.find(params[:id])
     authorize @readme
+
+    tools = @readme.tools
+    @gems = tools.select {|tool| tool.category == 'gem' }
+    @packages = tools.select {|tool| tool.category == 'package' }
   end
 
   def new
@@ -31,9 +35,19 @@ class ReadmesController < ApplicationController
   end
 
   def create_readme_tools
-    params[:readme][:tools_names].each do |gem_name|
+    params[:readme][:gem_names].each do |gem_name|
       next if gem_name.empty?
-      tool = Tool.find_or_create_by(name: gem_name)
+      tool = Tool.find_or_create_by(name: gem_name) do |tool|
+        tool.category = "gem"
+      end
+      ReadmeTool.create( readme: @readme, tool: tool)
+    end
+
+    params[:readme][:package_names].each do |gem_name|
+      next if gem_name.empty?
+      tool = Tool.find_or_create_by(name: gem_name) do |tool|
+        tool.category = "package"
+      end
       ReadmeTool.create( readme: @readme, tool: tool)
     end
   end
