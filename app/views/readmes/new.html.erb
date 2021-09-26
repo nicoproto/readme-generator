@@ -4,5 +4,7 @@
   <%= f.input :production_url %>
   <%= f.input :repository_url %>
   <%= f.input :keys_required %>
+  <%= f.input :tools_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": true, "placeholder": "Search gem..." }', multiple: true} %>
+
   <%= f.button :submit %>
 <% end %>
