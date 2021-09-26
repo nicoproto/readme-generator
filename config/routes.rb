@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :gems, param: :query, only: [ :show, :index ]
+      resources :packages, param: :query, only: [ :show, :index ]
     end
   end
 end

@@ -21,7 +21,7 @@ class RubygemsInfoService < ApplicationService
     data.map do |gem|
       {
         name: gem["name"],
-        webesite_url: gem["homepage_uri"],
+        website_url: gem["homepage_uri"],
         version: gem["version"],
         repository_url: gem["source_code_uri"],
         description: gem["info"]
