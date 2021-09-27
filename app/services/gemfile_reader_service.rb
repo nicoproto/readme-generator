@@ -44,6 +44,8 @@ class GemfileReaderService < ApplicationService
       }
     end
 
+    raise
+
     dependencies.reject {|gem| FILTERED_GEMS.include?(gem[:name]) }
   end
 end
