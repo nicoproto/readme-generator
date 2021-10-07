@@ -25,7 +25,11 @@ class ReadmesController < ApplicationController
     else
       render :new
     end
+  end
 
+  def edit
+    @readme = Readme.find(params[:id])
+    authorize @readme
   end
 
   private
