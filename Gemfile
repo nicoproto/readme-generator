@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -33,6 +33,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'devise'
 gem 'pundit'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'pry-byebug'
