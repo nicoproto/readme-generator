@@ -35,7 +35,15 @@ class ReadmesController < ApplicationController
   private
 
   def readme_params
-    params.require(:readme).permit(:staging_url, :production_url, :repository_url, :keys_required, :project_description)
+    params.require(:readme).permit(
+      :staging_url,
+      :production_url,
+      :repository_url,
+      :keys_required,
+      :project_description,
+      :banner,
+      :db_schema
+    )
   end
 
   def create_readme_tools

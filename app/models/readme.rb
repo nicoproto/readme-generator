@@ -9,6 +9,8 @@ class Readme < ApplicationRecord
   has_one_attached :db_schema
 
   has_rich_text :project_description
+  has_rich_text :contribution_steps
+  has_rich_text :prerequisites
 
   validates_uniqueness_of :repository_url, case_sensitive: false
 end
