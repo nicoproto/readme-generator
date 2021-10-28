@@ -1,5 +1,6 @@
 <div class="max-w-4xl mx-auto" data-controller="wizard">
   <h2 class="mb-6">Create readme</h2>
+
   <%= simple_form_for @readme do |f|  %>
     <div data-wizard-target="step">
       <h4 class="mb-6">Project Description</h4>
@@ -18,6 +19,11 @@
     </div>
 
     <div data-wizard-target="step" class="hidden">
+
+      <%= f.input :commands_to_run,
+        cols: 30,
+        row: 10,
+        input_html: { data: { wizard_target: "codefield" }}%>
       <%= f.input :db_schema, as: :file %>
       <%= f.input :keys_required %>
       <%= f.input :gem_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }', multiple: true} %>
@@ -37,6 +43,10 @@
 
       <h4 class="mb-6">Prerequisites</h4>
       <%= f.rich_text_area :prerequisites %>
+
+
+
+
 
       <%= f.button :submit %>
     </div>

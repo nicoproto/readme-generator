@@ -10,6 +10,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "autoprefixer": "^10.3.5",
+    "codemirror": "^5.63.1",
     "jquery": "^3.6.0",
     "postcss": "^8.3.8",
     "select2": "^4.1.0-rc.0",
