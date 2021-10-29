@@ -50,7 +50,7 @@ export default class extends Controller {
     const selectedValues = JSON.parse(this.element.dataset.selected);
 
     selectedValues.forEach((tool) => {
-      var newOption = new Option(tool['name'], tool['id'], false, true);
+      var newOption = new Option(tool['name'], tool['name'], false, true);
       $(this.element).append(newOption);
     });
 
