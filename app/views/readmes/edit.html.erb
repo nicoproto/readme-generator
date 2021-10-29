@@ -12,8 +12,18 @@
     <% # Step 2 %>
     <%= f.input :db_schema, as: :file %>
     <%= f.input :keys_required %>
-    <%= f.input :gem_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }', multiple: true} %>
-    <%= f.input :package_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }', multiple: true} %>
+    <%= f.input :gem_names, as: :select,
+        input_html: {
+          "data-controller": 'select2',
+          "data-selected": @readme.tools.gems.map { |gem| {id: gem.id, name: gem.name} }.to_json,
+          "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }',
+          multiple: true} %>
+    <%= f.input :package_names, as: :select,
+        input_html: {
+          "data-controller": 'select2',
+          "data-selected": @readme.tools.packages.map { |gem| {id: gem.id, name: gem.name} }.to_json,
+          "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }',
+          multiple: true} %>
 
     <% # Step 3 %>
     <h4 class="mb-6">Contribution Steps</h4>

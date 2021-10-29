@@ -7,6 +7,9 @@ class Tool < ApplicationRecord
 
   before_create :fetch_tool_data
 
+  scope :gems, -> { where(category: 'gem')}
+  scope :packages, -> { where(category: 'package')}
+
   def fetch_tool_data
     tool_data = RubygemsInfoService.call(name).first
     self.name = tool_data[:name]

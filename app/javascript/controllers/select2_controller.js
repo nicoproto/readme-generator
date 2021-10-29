@@ -16,9 +16,10 @@ export default class extends Controller {
       endpoint_url += "packages?query=";
     }
 
-     $(this.element).select2({
-       ...this.optionsValue,
-       ajax: {
+    $(this.element).select2({
+      ...this.optionsValue,
+      minimumInputLength: 3,
+      ajax: {
         url: function (params) {
           return `${endpoint_url}${params.term}`;
         },
@@ -37,8 +38,22 @@ export default class extends Controller {
         },
         cache: true,
         delay: 500,
-       }
-      });
-     console.log('Select2 connected');
+      }
+    });
+
+    if (this.element.dataset.selected) {
+      this.preselect();
+    }
+  }
+
+  preselect() {
+    const selectedValues = JSON.parse(this.element.dataset.selected);
+
+    selectedValues.forEach((tool) => {
+      var newOption = new Option(tool['name'], tool['id'], false, true);
+      $(this.element).append(newOption);
+    });
+
+    $(this.element).trigger('change');
   }
 }
