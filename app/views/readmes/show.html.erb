@@ -12,7 +12,10 @@
   <p><strong>Are keys required? </strong><%= @readme.keys_required ? "Yes" : "No" %></p>
 
   <h3>Commands to run</h3>
-  <%= @readme.commands_to_run %>
+  <textarea data-controller="codemirror">
+    <%= @readme.commands_to_run %>
+  </textarea>
+
 
 
   <h3>External Services</h3>
