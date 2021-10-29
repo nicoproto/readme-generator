@@ -15,6 +15,16 @@ export default class extends Controller {
     this.loadCodeMirror();
   }
 
+  goToPrevious(event) {
+    console.log('triggered');
+    const previousStep = event.target.dataset.previousStep - 1;
+    const actualStep = event.target.dataset.previousStep;
+
+    this.stepTargets[actualStep].classList.add("hidden");
+    this.stepTargets[previousStep].classList.remove("hidden");
+    this.loadCodeMirror();
+  }
+
   loadCodeMirror() {
     if (document.querySelector('.CodeMirror')) {
       document.querySelector('.CodeMirror').remove();

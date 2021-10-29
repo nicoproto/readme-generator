@@ -29,6 +29,12 @@
       <%= f.input :gem_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }', multiple: true} %>
       <%= f.input :package_names, as: :select, input_html: { "data-controller": 'select2', "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }', multiple: true} %>
 
+      <%= button_tag "Previous", type: "button",
+        data: {
+          action: "click->wizard#goToPrevious",
+          previous_step: "1"
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
       <%= button_tag "Next", type: "button",
         data: {
           action: "click->wizard#goToNext",
@@ -44,10 +50,12 @@
       <h4 class="mb-6">Prerequisites</h4>
       <%= f.rich_text_area :prerequisites %>
 
-
-
-
-
+      <%= button_tag "Previous", type: "button",
+        data: {
+          action: "click->wizard#goToPrevious",
+          previous_step: "2"
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
       <%= f.button :submit %>
     </div>
   <% end %>

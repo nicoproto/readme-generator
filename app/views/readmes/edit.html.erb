@@ -1,37 +1,73 @@
-<div class="max-w-2xl mx-auto">
+<div class="max-w-2xl mx-auto" data-controller="wizard">
   <h2 class="mb-6">Edit readme</h2>
+
   <%= simple_form_for @readme do |f|  %>
-    <% # Step 1 %>
-    <h4 class="mb-6">Project Description</h4>
-    <%= f.rich_text_area :project_description %>
-    <%= f.input :staging_url, as: :string %>
-    <%= f.input :production_url, as: :string %>
-    <%= f.input :banner, as: :file %>
-    <%= f.input :repository_url, as: :string %>
+    <div data-wizard-target="step">
+      <h4 class="mb-6">Project Description</h4>
+      <%= f.rich_text_area :project_description %>
+      <%= f.input :staging_url, as: :string %>
+      <%= f.input :production_url, as: :string %>
+      <%= f.input :banner, as: :file %>
+      <%= f.input :repository_url, as: :string %>
 
-    <% # Step 2 %>
-    <%= f.input :db_schema, as: :file %>
-    <%= f.input :keys_required %>
-    <%= f.input :gem_names, as: :select,
-        input_html: {
-          "data-controller": 'select2',
-          "data-selected": @readme.tools.gems.map { |gem| {id: gem.id, name: gem.name} }.to_json,
-          "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }',
-          multiple: true} %>
-    <%= f.input :package_names, as: :select,
-        input_html: {
-          "data-controller": 'select2',
-          "data-selected": @readme.tools.packages.map { |gem| {id: gem.id, name: gem.name} }.to_json,
-          "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }',
-          multiple: true} %>
+      <%= button_tag "Next", type: "button",
+        data: {
+          action: "click->wizard#goToNext",
+          next_step: "1"
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
+    </div>
 
-    <% # Step 3 %>
-    <h4 class="mb-6">Contribution Steps</h4>
-    <%= f.rich_text_area :contribution_steps %>
+    <div data-wizard-target="step" class="hidden">
+      <%= f.input :commands_to_run,
+          cols: 30,
+          row: 10,
+          input_html: { data: { wizard_target: "codefield" }}%>
 
-    <h4 class="mb-6">Prerequisites</h4>
-    <%= f.rich_text_area :prerequisites %>
+      <% # Step 2 %>
+      <%= f.input :db_schema, as: :file %>
+      <%= f.input :keys_required %>
+      <%= f.input :gem_names, as: :select,
+          input_html: {
+            "data-controller": 'select2',
+            "data-selected": @readme.tools.gems.map { |gem| {id: gem.id, name: gem.name} }.to_json,
+            "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search gem..." }',
+            multiple: true} %>
+      <%= f.input :package_names, as: :select,
+          input_html: {
+            "data-controller": 'select2',
+            "data-selected": @readme.tools.packages.map { |gem| {id: gem.id, name: gem.name} }.to_json,
+            "data-select2-options-value": '{ "width": "100%", "tags": false, "placeholder": "Search package..." }',
+            multiple: true} %>
 
-    <%= f.button :submit %>
+      <%= button_tag "Previous", type: "button",
+        data: {
+          action: "click->wizard#goToPrevious",
+          previous_step: "1"
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
+      <%= button_tag "Next", type: "button",
+        data: {
+          action: "click->wizard#goToNext",
+          next_step: "2",
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
+    </div>
+
+    <div data-wizard-target="step" class="hidden">
+      <h4 class="mb-6">Contribution Steps</h4>
+      <%= f.rich_text_area :contribution_steps %>
+
+      <h4 class="mb-6">Prerequisites</h4>
+      <%= f.rich_text_area :prerequisites %>
+
+      <%= button_tag "Previous", type: "button",
+        data: {
+          action: "click->wizard#goToPrevious",
+          previous_step: "2"
+        },
+        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
+      <%= f.button :submit %>
+    </div>
   <% end %>
 </div>

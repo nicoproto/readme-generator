@@ -54,6 +54,7 @@ class ReadmesController < ApplicationController
       :project_description,
       :banner,
       :db_schema,
+      :commands_to_run,
       :contribution_steps,
       :prerequisites
     )

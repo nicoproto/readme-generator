@@ -1,5 +1,8 @@
 <div class="max-w-2xl mx-auto">
   <%= cl_image_tag @readme.banner.key %>
+  <% if policy(@readme).edit? %>
+    <%= link_to "Edit", edit_readme_path(@readme) %>
+  <% end %>
   <h3>Project information</h3>
   <%= @readme.project_description %>
 
