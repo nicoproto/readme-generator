@@ -1,4 +1,5 @@
 <div class="max-w-2xl mx-auto">
+  <%= cl_image_tag @readme.banner.key %>
   <h3>Project information</h3>
   <%= @readme.project_description %>
 
@@ -29,4 +30,14 @@
       </li>
     <% end %>
   </ul>
+
+  <h3>Database Schema</h3>
+  <%= cl_image_tag @readme.db_schema.key %>
+
+  <h3>Contrigution Steps</h3>
+  <%= @readme.contribution_steps %>
+
+  <h3>Project prerequisites</h3>
+  <%= @readme.prerequisites %>
+
 </div>

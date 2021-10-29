@@ -32,6 +32,17 @@ class ReadmesController < ApplicationController
     authorize @readme
   end
 
+  def update
+    @readme = Readme.find(params[:id])
+    authorize @readme
+    if @readme.update(readme_params)
+      create_readme_tools
+      redirect_to @readme
+    else
+      render :edit
+    end
+  end
+
   private
 
   def readme_params
@@ -42,7 +53,9 @@ class ReadmesController < ApplicationController
       :keys_required,
       :project_description,
       :banner,
-      :db_schema
+      :db_schema,
+      :contribution_steps,
+      :prerequisites
     )
   end
 
