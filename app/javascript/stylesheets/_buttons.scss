@@ -1,0 +1,54 @@
+.btn-primary {
+  background: linear-gradient(
+    90deg, #de1a1a, #e1491f,
+    #e46729, #e78039, #e9974c,
+    #ebac63, #eec07c, #f2d398);
+
+  @apply relative px-4 py-3 text-white inline-block rounded-sm z-0;
+
+  &:after {
+    background: linear-gradient(
+    90deg, #f2d398, #eec07c,
+    #ebac63, #e9974c, #e78039,
+    #e46729, #e1491f, #de1a1a);
+    content: '';
+    z-index: -1;
+
+    @apply absolute top-0 left-0 h-full w-full block rounded-sm opacity-0 transition-opacity duration-500;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+
+.btn-gradient {
+  background: linear-gradient(253.58deg, #6BE38D 1.55%, #00997B 66.84%);
+  position: relative;
+  padding: 16px 24px;
+  z-index: 10;
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+  .btn-gradient:after {
+    background: linear-gradient(253.58deg, #00997B 1.55%, #6BE38D 66.84%);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -10;
+    transition: opacity 0.5s;
+    border-radius: 8px;
+  }
+
+.btn-gradient:hover:after {
+  opacity: 1;
+}
