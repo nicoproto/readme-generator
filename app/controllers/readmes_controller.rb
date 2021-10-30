@@ -43,6 +43,15 @@ class ReadmesController < ApplicationController
     end
   end
 
+  def export
+    # TODO: Move this logic somewhere else
+    @readme = Readme.find(params[:readme_id])
+    authorize @readme
+    send_data helpers.format_readme(@readme), :filename => 'readme.md'
+  end
+
+
+
   private
 
   def readme_params

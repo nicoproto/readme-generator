@@ -1,4 +1,5 @@
-<div class="max-w-2xl mx-auto">
+<div class="max-w-2xl mx-auto" data-controller="markdownjs">
+  <%= link_to "Get Markdown", readme_export_path(@readme), method: :post %>
   <%= cl_image_tag @readme.banner.key %>
   <% if policy(@readme).edit? %>
     <%= link_to "Edit", edit_readme_path(@readme) %>
@@ -6,11 +7,12 @@
   <h3>Project information</h3>
   <%= @readme.project_description %>
 
-  <p><strong>Staging URL: </strong><%= link_to @readme.staging_url %></p>
-  <p><strong>Production URL: </strong><%= link_to @readme.production_url %></p>
-  <p><strong>Repository URL: </strong><%= link_to @readme.repository_url %></p>
-  <p><strong>Are keys required? </strong><%= @readme.keys_required ? "Yes" : "No" %></p>
-
+  <ul>
+    <li>Staging URL: <%= link_to @readme.staging_url, @readme.staging_url, class: "js-on-md" %></li>
+    <li>Production URL: <%= link_to @readme.production_url, @readme.production_url, class: "js-on-md" %></li>
+    <li>Repository URL: <%= link_to @readme.repository_url, @readme.repository_url, class: "js-on-md" %></li>
+    <li>Are keys required? <%= @readme.keys_required ? "Yes" : "No" %></li>
+  </ul>
   <h3>Commands to run</h3>
   <textarea data-controller="codemirror">
     <%= @readme.commands_to_run %>
@@ -23,7 +25,7 @@
   <ul>
     <% @gems.each do |gem| %>
       <li>
-        <strong><%= link_to gem.name, gem.website_url, target: "_blank" %></strong> - <%= gem.description %>
+        <%= link_to gem.name, gem.website_url, class: "js-on-md", target: "_blank" %> - <%= gem.description %>
       </li>
     <% end %>
   </ul>
@@ -32,7 +34,7 @@
   <ul>
     <% @packages.each do |package| %>
       <li>
-        <strong><%= link_to package.name, package.website_url, target: "_blank" %></strong> - <%= package.description %>
+        <%= link_to package.name, package.website_url, class: "js-on-md", target: "_blank" %> - <%= package.description %>
       </li>
     <% end %>
   </ul>

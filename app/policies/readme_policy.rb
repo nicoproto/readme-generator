@@ -16,4 +16,8 @@ class ReadmePolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def export?
+    record.user == user
+  end
 end
