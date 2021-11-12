@@ -6,10 +6,12 @@ export default class extends Controller {
   static targets = ['codefield']
 
   connect() {
-    CodeMirror.fromTextArea(this.element, {
-      lineNumbers: true,
-      mode: "javascript",
-      readOnly: true,
+    window.addEventListener('load', () => {
+      CodeMirror.fromTextArea(this.element, {
+        lineNumbers: true,
+        mode: "javascript",
+        readOnly: true,
+      });
     });
   }
 }
