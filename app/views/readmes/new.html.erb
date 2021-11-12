@@ -1,21 +1,38 @@
-<div class="max-w-4xl mx-auto" data-controller="wizard">
-  <h2 class="mb-6">Create readme</h2>
+<div class="max-w-2xl mx-auto" data-controller="wizard">
+  <h3 class="mb-6 text-center">Project general information</h3>
 
   <%= simple_form_for @readme do |f|  %>
     <div data-wizard-target="step">
-      <h4 class="mb-6">Project Description</h4>
+
+      <label class="mb-2 block text-sm font-medium text-gray-600">Project Description</label>
       <%= f.rich_text_area :project_description %>
-      <%= f.input :staging_url, as: :string %>
-      <%= f.input :production_url, as: :string %>
-      <%= f.input :banner, as: :file %>
-      <%= f.input :repository_url, as: :string %>
+
+      <div class="flex mt-4">
+        <div class="flex-1 mr-2">
+          <%= f.input :staging_url, as: :string, placeholder: 'https://www.mywebsite.com' %>
+        </div>
+        <div class="flex-1 ml-2">
+          <%= f.input :banner, as: :file %>
+        </div>
+      </div>
+
+      <div class="flex mt-4">
+        <div class="flex-1 mr-2">
+          <%= f.input :production_url, as: :string, placeholder: 'https://www.mywebsite.com' %>
+        </div>
+        <div class="flex-1 ml-2">
+          <%= f.input :repository_url, as: :string, placeholder: 'https://www.mywebsite.com' %>
+        </div>
+      </div>
+
 
       <%= button_tag "Next", type: "button",
         data: {
           action: "click->wizard#goToNext",
           next_step: "1"
         },
-        class: "my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded" %>
+        class: "btn-primary btn-block ml-auto" %>
+
     </div>
 
     <div data-wizard-target="step" class="hidden">

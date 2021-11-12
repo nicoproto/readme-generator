@@ -4,7 +4,7 @@
     #e46729, #e78039, #e9974c,
     #ebac63, #eec07c, #f2d398);
 
-  @apply relative px-4 py-3 text-white inline-block rounded-sm z-0;
+  @apply relative px-4 py-3 text-white inline-block rounded-md z-0;
 
   &:after {
     background: linear-gradient(
@@ -14,11 +14,15 @@
     content: '';
     z-index: -1;
 
-    @apply absolute top-0 left-0 h-full w-full block rounded-sm opacity-0 transition-opacity duration-500;
+    @apply absolute top-0 left-0 h-full w-full block rounded-md opacity-0 transition-opacity duration-500;
   }
 
   &:hover:after {
     opacity: 1;
+  }
+
+  &.btn-block {
+    @apply block;
   }
 }
 

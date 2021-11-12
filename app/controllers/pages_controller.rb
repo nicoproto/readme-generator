@@ -3,5 +3,7 @@ class PagesController < ApplicationController
 
   def home; end
 
-  def kitchensink; end
+  def kitchensink
+    @readme = Readme.new
+  end
 end
